@@ -1,4 +1,8 @@
 <mat-nav-list>
-  <a mat-list-item href="#"><mat-icon>home</mat-icon>Insurances</a>
-  <a mat-list-item href="#"><mat-icon>favorite</mat-icon>Favorites</a>
+  <a mat-list-item [routerLink]="['/home']" routerLinkActive="active">
+    <mat-icon>home</mat-icon>Insurances
+  </a>
+  <a mat-list-item [routerLink]="['/favorites']" routerLinkActive="active">
+    <mat-icon class="favorite">favorite</mat-icon>Favorites ({{ countFavorites$ | async }})
+  </a>
 </mat-nav-list>

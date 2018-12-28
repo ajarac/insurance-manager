@@ -1,9 +1,9 @@
 import { Directive, Input, HostBinding, OnInit } from '@angular/core';
 
 @Directive({
-	selector: '[row-width]'
+	selector: '[rowEqual]'
 })
-export class RowWidthDirective implements OnInit {
+export class RowEqualDirective implements OnInit {
 	@Input() countRouws: number;
 
 	@HostBinding('style.width.%') width: number;

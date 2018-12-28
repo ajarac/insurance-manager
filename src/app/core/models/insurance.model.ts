@@ -1,9 +1,10 @@
 export interface Insurance {
-	'id': string;
-	'name': string;
-	'brand': string;
+	id: string;
+	name: string;
+	brand: string;
 	'brand-image': string;
-	'kind': string;
+	kind: string;
 	'Kind-image': string;
-	'price': string;
+	price: string;
+	favorite: boolean;
 }

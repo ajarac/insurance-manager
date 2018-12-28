@@ -5,15 +5,17 @@
   <table mat-table [dataSource]="dataSource" matSort>
 
     <ng-container *ngFor="let header of headers" [matColumnDef]="header.property">
-      <th row-width [countRouws]="displayedColumns" mat-header-cell *matHeaderCellDef mat-sort-header>{{ header.title
+      <th rowEqual [countRouws]="displayedColumns.length" mat-header-cell *matHeaderCellDef mat-sort-header>{{
+        header.title
         }}</th>
-      <td row-width [countRouws]="displayedColumns" mat-cell *matCellDef="let element">{{element[header.property]}}</td>
+      <td rowEqual [countRouws]="displayedColumns.length" mat-cell *matCellDef="let element">{{element[header.property]}}</td>
     </ng-container>
 
-    <ng-container *ngIf="actions.length">
-      <th row-width [countRouws]="displayedColumns" mat-header-cell *matHeaderCellDef>Actions</th>
-      <td row-width [countRouws]="displayedColumns" mat-cell *matCellDef="let element">
-        <mat-icon *ngFor="let icon of actions" (click)="onClickAction(element, icon)">{{ icon }}</mat-icon>
+    <ng-container *ngIf="actions.length" [matColumnDef]="actionName">
+      <th rowEqual [countRouws]="displayedColumns.length" mat-header-cell *matHeaderCellDef>{{ actionName }}</th>
+      <td rowEqual [countRouws]="displayedColumns.length" mat-cell *matCellDef="let element">
+        <mat-icon *ngFor="let action of actions" (click)="onClickAction(element, action.icon)" colorDelegate [delegate]="action.getColor(element)" >{{
+          action.icon }}</mat-icon>
       </td>
     </ng-container>
 

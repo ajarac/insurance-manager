@@ -1,1 +1,1 @@
-<app-table [headers]="headers" [dataList]="insuranceList$ | async"></app-table>
+<app-table [headers]="headers" [dataList]="insuranceList$ | async" [actions]="actions" (clickAction)="clickFavorite($event)"></app-table>

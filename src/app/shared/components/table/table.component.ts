@@ -9,7 +9,7 @@ import {
 	ViewChild
 } from '@angular/core';
 import { MatTableDataSource, MatPaginator, MatSort } from '@angular/material';
-import { TableHeader, TableActionEmit } from '@shared/models';
+import { TableHeader, TableActionEvent, TableAction } from '@shared/models';
 
 @Component({
 	selector: 'app-table',
@@ -17,15 +17,17 @@ import { TableHeader, TableActionEmit } from '@shared/models';
 	styleUrls: [ './table.component.scss' ],
 	changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class TableComponent implements OnInit, OnChanges {
-	@Input() dataList: any[] = [];
+export class TableComponent<T> implements OnInit, OnChanges {
+	@Input() dataList: T[] = [];
 	@Input() headers: TableHeader[];
-	@Input() actions: string[] = [];
+	@Input() actions: TableAction<T>[] = [];
 
-	@Output() clickAction: EventEmitter<TableActionEmit<any>> = new EventEmitter<TableActionEmit<any>>();
+	@Output() clickAction: EventEmitter<TableActionEvent<T>> = new EventEmitter<TableActionEvent<T>>();
 
 	displayedColumns: string[];
-	dataSource: MatTableDataSource<any> = new MatTableDataSource<any>();
+	dataSource: MatTableDataSource<T> = new MatTableDataSource<T>();
+
+	readonly actionName: string = 'actions';
 
 	@ViewChild(MatPaginator) paginator: MatPaginator;
 	@ViewChild(MatSort) sort: MatSort;
@@ -33,7 +35,7 @@ export class TableComponent implements OnInit, OnChanges {
 	ngOnInit() {
 		this.displayedColumns = this.headers.map((h) => h.property);
 		if (this.actions.length) {
-			this.displayedColumns.push('Actions');
+			this.displayedColumns.push(this.actionName);
 		}
 
 		this.dataSource.paginator = this.paginator;
@@ -48,7 +50,7 @@ export class TableComponent implements OnInit, OnChanges {
 		this.dataSource.filter = filterValue.trim().toLowerCase();
 	}
 
-	onClickAction(element: any, action: string): void {
+	onClickAction(element: T, action: string): void {
 		this.clickAction.emit({ element, action });
 	}
 }

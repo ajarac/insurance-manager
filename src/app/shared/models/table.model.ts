@@ -3,7 +3,12 @@ export interface TableHeader {
 	property: string;
 }
 
-export interface TableActionEmit<T> {
+export interface TableActionEvent<T> {
 	element: T;
 	action: string;
+}
+
+export interface TableAction<T> {
+	icon: string;
+	getColor: (el: T) => () => string;
 }

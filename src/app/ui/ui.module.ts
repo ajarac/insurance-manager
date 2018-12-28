@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { RouterModule } from '@angular/router';
 import { LayoutModule } from '@angular/cdk/layout';
 
 // Modules
@@ -11,7 +12,7 @@ import { SidenavComponent } from './components/sidenav/sidenav.component';
 
 @NgModule({
 	declarations: [ ...COMPONENTS, SidenavComponent ],
-	imports: [ CommonModule, LayoutModule, SharedModule ],
+	imports: [ CommonModule, RouterModule,LayoutModule, SharedModule ],
 	exports: [ ...COMPONENTS ]
 })
 export class UiModule {}

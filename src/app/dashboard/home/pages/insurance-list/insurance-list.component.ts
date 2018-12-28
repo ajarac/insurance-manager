@@ -7,7 +7,7 @@ import { Insurance } from '@core/models';
 import * as fromStore from '@core/store';
 
 // Shared
-import { TableHeader } from '@shared/models/table.model';
+import { TableHeader, TableActionEvent, TableAction } from '@shared/models/table.model';
 
 @Component({
 	selector: 'app-insurance-list',
@@ -37,10 +37,18 @@ export class InsuranceListComponent implements OnInit {
 		}
 	];
 
-	constructor(private store: Store<any>) {}
+	actions: TableAction<Insurance>[] = [
+		{ icon: 'favorite', getColor: (el: Insurance) => () => (el.favorite ? 'red' : 'black') }
+	];
+
+	constructor(private store: Store<fromStore.State>) {}
 
 	ngOnInit() {
 		this.store.dispatch(new fromStore.GetInsurance());
 		this.insuranceList$ = this.store.select(fromStore.getInsurancesList);
+	}
+
+	clickFavorite({ element }: TableActionEvent<Insurance>): void {
+		this.store.dispatch(new fromStore.ToggleFavoriteInsurance(element));
 	}
 }
