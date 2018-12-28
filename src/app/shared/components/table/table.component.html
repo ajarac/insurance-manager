@@ -1,0 +1,24 @@
+<mat-form-field>
+  <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">
+</mat-form-field>
+<div class="mat-elevation-z8">
+  <table mat-table [dataSource]="dataSource" matSort>
+
+    <ng-container *ngFor="let header of headers" [matColumnDef]="header.property">
+      <th row-width [countRouws]="displayedColumns" mat-header-cell *matHeaderCellDef mat-sort-header>{{ header.title
+        }}</th>
+      <td row-width [countRouws]="displayedColumns" mat-cell *matCellDef="let element">{{element[header.property]}}</td>
+    </ng-container>
+
+    <ng-container *ngIf="actions.length">
+      <th row-width [countRouws]="displayedColumns" mat-header-cell *matHeaderCellDef>Actions</th>
+      <td row-width [countRouws]="displayedColumns" mat-cell *matCellDef="let element">
+        <mat-icon *ngFor="let icon of actions" (click)="onClickAction(element, icon)">{{ icon }}</mat-icon>
+      </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  </table>
+  <mat-paginator [pageSize]="5"></mat-paginator>
+</div>

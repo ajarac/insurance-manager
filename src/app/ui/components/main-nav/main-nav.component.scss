@@ -1,0 +1,33 @@
+.sidenav-container {
+	height: 100%;
+}
+
+.sidenav {
+	width: 200px;
+}
+
+.sidenav .mat-toolbar {
+	background: inherit;
+}
+
+.mat-toolbar.mat-primary {
+	position: sticky;
+	top: 0;
+	z-index: 1;
+}
+
+mat-sidenav-content {
+	padding: 15px 20px;
+}
+
+mat-sidenav-container.sidenav-container {
+	position: absolute;
+	bottom: 0;
+	right: 0;
+	left: 0;
+	top: 64px;
+  height: auto;
+	&.isHandset {
+		top: 56px;
+	}
+}

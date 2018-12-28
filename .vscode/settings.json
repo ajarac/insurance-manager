@@ -1,0 +1,11 @@
+{
+  "xml.fileAssociations": [
+    {
+      "systemId": "c:\\Users\\stain\\proyectos\\insurance-manager\\schema\\tns.xsd",
+      "pattern": "**/**/*.xml"
+    }
+  ],
+  "files.exclude": {
+    "schema": true
+  }
+}
