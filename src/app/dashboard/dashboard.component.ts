@@ -1,4 +1,7 @@
-import { Component, ChangeDetectionStrategy } from '@angular/core';
+import { Component, ChangeDetectionStrategy, OnInit } from '@angular/core';
+import { Store } from '@ngrx/store';
+
+import * as fromStore from '@core/store';
 
 @Component({
 	selector: 'app-dashboard',
@@ -6,4 +9,10 @@ import { Component, ChangeDetectionStrategy } from '@angular/core';
 	styleUrls: [ './dashboard.component.scss' ],
 	changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class DashboardComponent {}
+export class DashboardComponent implements OnInit {
+	constructor(private store: Store<fromStore.State>) {}
+
+	ngOnInit() {
+		this.store.dispatch(new fromStore.GetInsurance());
+	}
+}

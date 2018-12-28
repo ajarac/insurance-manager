@@ -21,6 +21,7 @@ export class TableComponent<T> implements OnInit, OnChanges {
 	@Input() dataList: T[] = [];
 	@Input() headers: TableHeader[];
 	@Input() actions: TableAction<T>[] = [];
+	@Input() images: string[] = [];
 
 	@Output() clickAction: EventEmitter<TableActionEvent<T>> = new EventEmitter<TableActionEvent<T>>();
 
@@ -28,6 +29,7 @@ export class TableComponent<T> implements OnInit, OnChanges {
 	dataSource: MatTableDataSource<T> = new MatTableDataSource<T>();
 
 	readonly actionName: string = 'actions';
+	readonly imageName: string = 'images';
 
 	@ViewChild(MatPaginator) paginator: MatPaginator;
 	@ViewChild(MatSort) sort: MatSort;
@@ -37,6 +39,12 @@ export class TableComponent<T> implements OnInit, OnChanges {
 		if (this.actions.length) {
 			this.displayedColumns.push(this.actionName);
 		}
+
+		if (this.images.length) {
+			this.displayedColumns.unshift(this.imageName);
+		}
+
+		console.log(this.images);
 
 		this.dataSource.paginator = this.paginator;
 		this.dataSource.sort = this.sort;

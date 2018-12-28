@@ -1,3 +1,5 @@
+@import '../../../../styles.scss';
+
 mat-icon {
 	margin-right: 10px;
 }
@@ -5,7 +7,7 @@ mat-icon {
 .favorite {
   color: red;
 }
-/*
+
 .active {
-  color:
-}*/
+  background-color: mat-color($primary, 100);
+}

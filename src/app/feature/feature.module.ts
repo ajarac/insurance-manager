@@ -7,7 +7,8 @@ import {
 	MatListModule,
 	MatTableModule,
 	MatInputModule,
-	MatPaginatorModule
+	MatPaginatorModule,
+	MatSortModule
 } from '@angular/material';
 
 // Module only for material design modules
@@ -21,6 +22,7 @@ import {
 		MatIconModule,
 		MatListModule,
 		MatTableModule,
+		MatSortModule,
 		MatInputModule,
 		MatPaginatorModule
 	]

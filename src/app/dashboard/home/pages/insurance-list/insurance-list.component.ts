@@ -18,6 +18,8 @@ import { TableHeader, TableActionEvent, TableAction } from '@shared/models/table
 export class InsuranceListComponent implements OnInit {
 	insuranceList$: Observable<Insurance[]>;
 
+	images: string[] = [ 'brand-image' ];
+
 	headers: TableHeader[] = [
 		{
 			title: 'Product Name',
@@ -36,15 +38,14 @@ export class InsuranceListComponent implements OnInit {
 			property: 'price'
 		}
 	];
-
+	/*
 	actions: TableAction<Insurance>[] = [
 		{ icon: 'favorite', getColor: (el: Insurance) => () => (el.favorite ? 'red' : 'black') }
-	];
+	];*/
 
 	constructor(private store: Store<fromStore.State>) {}
 
 	ngOnInit() {
-		this.store.dispatch(new fromStore.GetInsurance());
 		this.insuranceList$ = this.store.select(fromStore.getInsurancesList);
 	}
 
