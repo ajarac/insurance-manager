@@ -1,1 +1,9 @@
-<app-table [dataList]="dataList$ | async"></app-table>
+<h1 mat-dialog-title>Favorites Manager</h1>
+<div mat-dialog-content>
+  <app-table [headers]="headers" [dataList]="dataList$ | async" [actions]="actions" (clickAction)="onClickFavorite($event)"></app-table>
+</div>
+<div mat-dialog-actions>
+  <div class="button">
+    <button mat-raised-button mat-dialog-close color="accent">Finish</button>
+  </div>
+</div>

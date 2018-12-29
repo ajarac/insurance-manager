@@ -4,10 +4,14 @@ table {
 }
 
 mat-icon {
-  color: red;
-  cursor: pointer;
+	color: red;
+	cursor: pointer;
 }
 
 img {
-  height: 50px;
+	height: 50px;
+}
+
+.mat-elevation-z8 {
+	margin: 10px 0;
 }

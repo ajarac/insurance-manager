@@ -1,17 +1,18 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { RouterModule } from '@angular/router';
 import { MatDialogModule } from '@angular/material';
 
 // Components
-import { FavoritesComponent } from './favorites.component';
 import { COMPONENTS, ENTRY_COMPONENTS } from './components';
+import { PAGES } from './pages';
 
 // Modules
 import { SharedModule } from '@shared/shared.module';
+import { FavoritesRoutingModule } from './favorites.routing';
 
 @NgModule({
-	declarations: [ FavoritesComponent, ...COMPONENTS, ...ENTRY_COMPONENTS ],
-	imports: [ CommonModule, RouterModule, MatDialogModule, SharedModule ]
+	declarations: [ ...COMPONENTS, ...ENTRY_COMPONENTS, ...PAGES ],
+	entryComponents: [ ...ENTRY_COMPONENTS ],
+	imports: [ CommonModule, FavoritesRoutingModule, MatDialogModule, SharedModule ]
 })
 export class FavoritesModule {}

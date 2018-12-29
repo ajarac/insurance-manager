@@ -1,0 +1,4 @@
+<app-table [headers]="headers" [dataList]="favoritesList$ | async" [images]="images"></app-table>
+<div class="button">
+  <button mat-raised-button color="primary" (click)="openDialog()">Manager Favorites</button>
+</div>

@@ -44,8 +44,6 @@ export class TableComponent<T> implements OnInit, OnChanges {
 			this.displayedColumns.unshift(this.imageName);
 		}
 
-		console.log(this.images);
-
 		this.dataSource.paginator = this.paginator;
 		this.dataSource.sort = this.sort;
 	}
