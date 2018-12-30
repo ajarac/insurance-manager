@@ -19,8 +19,8 @@ import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 @NgModule({
 	declarations: [],
 	imports: [
-    CommonModule,
-    HttpClientModule,
+		CommonModule,
+		HttpClientModule,
 		StoreModule.forRoot(reducers),
 		EffectsModule.forRoot(EFFECTS),
 		!env.production ? StoreDevtoolsModule.instrument() : []

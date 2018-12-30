@@ -8,4 +8,8 @@ import { Component, ChangeDetectionStrategy, Output, EventEmitter } from '@angul
 })
 export class ToolbarComponent {
 	@Output() drawerToggle: EventEmitter<void> = new EventEmitter<void>();
+
+	clickDrawer(): void {
+		this.drawerToggle.emit();
+	}
 }

@@ -10,7 +10,7 @@ export class ApiService {
 		return this.http.get<T>(this.buildUrl(url));
 	}
 
-	private buildUrl(url: string): string {
+	buildUrl(url: string): string {
 		return `${this.api_url}/${url}`;
 	}
 }

@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Actions, Effect, ofType } from '@ngrx/effects';
 
-import { InsuranceService } from '@core/services/insurance.service';
+import { InsuranceService } from '@core/services';
 import { Insurance } from '@core/models';
 
 import * as insuranceActions from '../actions/insurance.action';

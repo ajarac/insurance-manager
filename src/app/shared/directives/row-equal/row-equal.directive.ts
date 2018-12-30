@@ -4,7 +4,7 @@ import { Directive, Input, HostBinding, OnInit } from '@angular/core';
 	selector: '[rowEqual]'
 })
 export class RowEqualDirective implements OnInit {
-	@Input() countRouws: number;
+	@Input() countRouws = 1;
 
 	@HostBinding('style.width.%') width: number;
 

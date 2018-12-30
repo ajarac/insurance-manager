@@ -6,5 +6,5 @@ export interface Insurance {
 	kind: string;
 	'Kind-image': string;
 	price: string;
-	favorite: boolean;
+	favorite?: boolean;
 }

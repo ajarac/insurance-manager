@@ -19,7 +19,7 @@ import { TableHeader, TableActionEvent, TableAction } from '@shared/models';
 })
 export class TableComponent<T> implements OnInit, OnChanges {
 	@Input() dataList: T[] = [];
-	@Input() headers: TableHeader[];
+	@Input() headers: TableHeader[] = [];
 	@Input() actions: TableAction<T>[] = [];
 	@Input() images: string[] = [];
 
