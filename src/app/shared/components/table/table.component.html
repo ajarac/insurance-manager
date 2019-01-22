@@ -1,27 +1,24 @@
-<mat-form-field>
-  <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">
-</mat-form-field>
 <div class="mat-elevation-z8">
   <table mat-table [dataSource]="dataSource" matSort>
 
-    <ng-container *ngFor="let image of images" [matColumnDef]="imageName">
-      <th mat-header-cell *matHeaderCellDef>Brand</th>
+    <ng-container *ngFor="let image of listConfig.images" [matColumnDef]="imageName">
+      <th mat-header-cell *matHeaderCellDef>{{ imageName }}</th>
       <td mat-cell *matCellDef="let element">
-        <img src="../../../../assets/img/{{element[image]}}">
+        <img src="assets/img/{{element[image]}}">
       </td>
     </ng-container>
 
-    <ng-container *ngFor="let header of headers" [matColumnDef]="header.property">
+    <ng-container *ngFor="let header of listConfig.headers" [matColumnDef]="header.property">
       <th rowEqual [countRouws]="displayedColumns.length" mat-header-cell *matHeaderCellDef mat-sort-header>{{
         header.title
         }}</th>
       <td rowEqual [countRouws]="displayedColumns.length" mat-cell *matCellDef="let element">{{element[header.property]}}</td>
     </ng-container>
 
-    <ng-container *ngIf="actions.length" [matColumnDef]="actionName">
+    <ng-container *ngIf="listConfig.actions?.length" [matColumnDef]="actionName">
       <th rowEqual [countRouws]="displayedColumns.length" mat-header-cell *matHeaderCellDef>{{ actionName }}</th>
       <td rowEqual [countRouws]="displayedColumns.length" mat-cell *matCellDef="let element">
-        <mat-icon *ngFor="let action of actions" (click)="onClickAction(element, action.icon)" colorDelegate [delegate]="action.getColor(element)" >{{
+        <mat-icon *ngFor="let action of listConfig.actions" (click)="onClickAction(element, action.icon)" colorDelegate [delegate]="action.getColor(element)">{{
           action.icon }}</mat-icon>
       </td>
     </ng-container>
@@ -29,5 +26,4 @@
     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
     <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
   </table>
-  <mat-paginator [pageSize]="5" showFirstLastButtons></mat-paginator>
 </div>

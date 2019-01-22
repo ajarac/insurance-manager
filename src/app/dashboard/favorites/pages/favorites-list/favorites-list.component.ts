@@ -7,9 +7,9 @@ import { Observable } from 'rxjs';
 import { Store } from '@ngrx/store';
 
 import * as fromStore from '@core/store';
+import { ListConfig } from '@shared/models';
 
 import { ModalListComponent } from '../../components';
-import { TableHeader } from '@shared/models';
 
 @Component({
 	selector: 'app-favorites-list',
@@ -20,22 +20,25 @@ import { TableHeader } from '@shared/models';
 export class FavoritesListComponent implements OnInit {
 	favoritesList$: Observable<Insurance[]>;
 
-	images: string[] = [ 'brand-image' ];
-
-	headers: TableHeader[] = [
-		{
-			title: 'Product Name',
-			property: 'name'
-		},
-		{
-			title: 'Insurance Company',
-			property: 'brand'
-		},
-		{
-			title: 'Policy Kind',
-			property: 'kind'
-		}
-	];
+	listConfig: ListConfig<Insurance> = {
+		headers: [
+			{
+				title: 'Product Name',
+				property: 'name'
+			},
+			{
+				title: 'Insurance Company',
+				property: 'brand'
+			},
+			{
+				title: 'Policy Kind',
+				property: 'kind'
+			}
+		],
+		images: [ 'brand-image' ],
+		actions: [],
+		title: (item: Insurance) => `${item.brand} - ${item.kind}`
+	};
 
 	constructor(private store: Store<fromStore.State>, private router: Router, public dialog: MatDialog) {}
 

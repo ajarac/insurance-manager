@@ -1,0 +1,16 @@
+<mat-card>
+  <mat-card-title *ngIf="listConfig.title">{{ listConfig.title(item) }}</mat-card-title>
+  <img mat-card-image *ngFor="let image of listConfig.images" src="assets/img/{{item[image]}}">
+  <mat-card-content>
+    <div *ngFor="let header of listConfig.headers" class="row">
+      <label>{{ header.title}}</label>
+      <span>{{ item[header.property] }}</span>
+    </div>
+  </mat-card-content>
+  <mat-card-actions>
+    <button mat-icon-button *ngFor="let action of listConfig.actions">
+        <mat-icon (click)="onClickAction(action.icon)" colorDelegate [delegate]="action.getColor(item)">{{
+            action.icon }}</mat-icon>
+    </button>
+  </mat-card-actions>
+</mat-card>

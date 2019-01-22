@@ -1,0 +1,9 @@
+<mat-form-field>
+  <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">
+</mat-form-field>
+
+<app-list-container *ngIf="isHandset$ | async" [dataList]="dataSource.connect() | async">
+  <app-card-item *template="let item" [item]="item" [listConfig]="listConfig" (clickAction)="clickAction.emit($event)"></app-card-item>
+</app-list-container>
+<app-table *ngIf="!(isHandset$ | async)" [dataSource]="dataSource" [listConfig]="listConfig" (clickAction)="clickAction.emit($event)"></app-table>
+<mat-paginator [pageSize]="5" showFirstLastButtons></mat-paginator>

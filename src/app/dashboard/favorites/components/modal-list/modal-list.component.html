@@ -1,6 +1,6 @@
 <h1 mat-dialog-title>Favorites Manager</h1>
 <div mat-dialog-content>
-  <app-table [headers]="headers" [dataList]="dataList$ | async" [actions]="actions" (clickAction)="onClickFavorite($event)"></app-table>
+  <app-dynamic-list  [dataList]="dataList$ | async" [listConfig]="listConfig" (clickAction)="onClickFavorite($event)"></app-dynamic-list>
 </div>
 <div mat-dialog-actions>
   <div class="button">

@@ -3,13 +3,13 @@ import {
 	ChangeDetectionStrategy,
 	Input,
 	OnInit,
-	OnChanges,
 	Output,
 	EventEmitter,
-	ViewChild
+	ViewChild,
+	OnDestroy
 } from '@angular/core';
-import { MatTableDataSource, MatPaginator, MatSort } from '@angular/material';
-import { TableHeader, TableActionEvent, TableAction } from '@shared/models';
+import { MatTableDataSource, MatSort } from '@angular/material';
+import { ListActionEvent, ListConfig } from '@shared/models';
 
 @Component({
 	selector: 'app-table',
@@ -17,39 +17,36 @@ import { TableHeader, TableActionEvent, TableAction } from '@shared/models';
 	styleUrls: [ './table.component.scss' ],
 	changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class TableComponent<T> implements OnInit, OnChanges {
-	@Input() dataList: T[] = [];
-	@Input() headers: TableHeader[] = [];
-	@Input() actions: TableAction<T>[] = [];
-	@Input() images: string[] = [];
+export class TableComponent<T> implements OnInit, OnDestroy {
+	@Input() listConfig: ListConfig<T>;
 
-	@Output() clickAction: EventEmitter<TableActionEvent<T>> = new EventEmitter<TableActionEvent<T>>();
+	@Input() dataSource: MatTableDataSource<T>;
+
+	@Output() clickAction: EventEmitter<ListActionEvent<T>> = new EventEmitter<ListActionEvent<T>>();
 
 	displayedColumns: string[];
-	dataSource: MatTableDataSource<T> = new MatTableDataSource<T>();
 
 	readonly actionName: string = 'actions';
 	readonly imageName: string = 'images';
 
-	@ViewChild(MatPaginator) paginator: MatPaginator;
 	@ViewChild(MatSort) sort: MatSort;
 
 	ngOnInit() {
-		this.displayedColumns = this.headers.map((h) => h.property);
-		if (this.actions.length) {
+		console.log('listConfig', this.listConfig);
+		this.displayedColumns = this.listConfig.headers.map((h) => h.property);
+		if (this.listConfig.actions.length) {
 			this.displayedColumns.push(this.actionName);
 		}
 
-		if (this.images.length) {
+		if (this.listConfig.images.length) {
 			this.displayedColumns.unshift(this.imageName);
 		}
 
-		this.dataSource.paginator = this.paginator;
 		this.dataSource.sort = this.sort;
 	}
 
-	ngOnChanges() {
-		this.dataSource.data = this.dataList;
+	ngOnDestroy() {
+		this.dataSource.sort = null;
 	}
 
 	applyFilter(filterValue: string) {

@@ -1,4 +1,4 @@
-<app-table [headers]="headers" [dataList]="favoritesList$ | async" [images]="images"></app-table>
+<app-dynamic-list [listConfig]="listConfig" [dataList]="favoritesList$ | async"></app-dynamic-list>
 <div class="button">
   <button mat-raised-button color="primary" (click)="openDialog()">Manager Favorites</button>
 </div>

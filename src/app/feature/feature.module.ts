@@ -8,7 +8,8 @@ import {
 	MatTableModule,
 	MatInputModule,
 	MatPaginatorModule,
-	MatSortModule
+	MatSortModule,
+	MatCardModule
 } from '@angular/material';
 
 // Module only for material design modules
@@ -24,7 +25,8 @@ import {
 		MatTableModule,
 		MatSortModule,
 		MatInputModule,
-		MatPaginatorModule
+		MatPaginatorModule,
+		MatCardModule
 	]
 })
 export class FeatureModule {}
