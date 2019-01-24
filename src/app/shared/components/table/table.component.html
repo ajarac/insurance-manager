@@ -18,7 +18,8 @@
     <ng-container *ngIf="listConfig.actions?.length" [matColumnDef]="actionName">
       <th rowEqual [countRouws]="displayedColumns.length" mat-header-cell *matHeaderCellDef>{{ actionName }}</th>
       <td rowEqual [countRouws]="displayedColumns.length" mat-cell *matCellDef="let element">
-        <mat-icon *ngFor="let action of listConfig.actions" (click)="onClickAction(element, action.icon)" colorDelegate [delegate]="action.getColor(element)">{{
+        <mat-icon *ngFor="let action of listConfig.actions; let i = index" [id]="'action_'+ i + '_' + action.icon"
+          (click)="onClickAction(element, action.icon)" colorDelegate [delegate]="action.getColor(element)">{{
           action.icon }}</mat-icon>
       </td>
     </ng-container>
