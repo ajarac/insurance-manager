@@ -1,30 +1,34 @@
-import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { HttpClientModule } from '@angular/common/http';
+import {NgModule} from '@angular/core';
+import {CommonModule} from '@angular/common';
+import {HttpClientModule} from '@angular/common/http';
 
-import { environment as env } from '@env/environment';
+import {environment as env} from '@env/environment';
 
-import { ApiService } from './http/api.service';
-
+import {ApiService} from './http/api.service';
 // Services
-import { SERVICES } from './services/index';
+import {SERVICES} from '@core/services';
+// Store NGXS
+import {NgxsModule} from '@ngxs/store';
+import {NgxsLoggerPluginModule} from '@ngxs/logger-plugin';
+import {NgxsReduxDevtoolsPluginModule} from '@ngxs/devtools-plugin';
+import {NgxsStoragePluginModule} from '@ngxs/storage-plugin';
+import {STATES} from '@core/store/state';
 
-// Redux
-import { StoreModule } from '@ngrx/store';
-import { EffectsModule } from '@ngrx/effects';
-import { reducers } from './store';
-import { EFFECTS } from './store/effects/index';
-import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+const devModules: any[] = !env.production ? [
+  NgxsReduxDevtoolsPluginModule.forRoot(),
+  NgxsLoggerPluginModule
+] : [];
 
 @NgModule({
-	declarations: [],
-	imports: [
-		CommonModule,
-		HttpClientModule,
-		StoreModule.forRoot(reducers),
-		EffectsModule.forRoot(EFFECTS),
-		!env.production ? StoreDevtoolsModule.instrument() : []
-	],
-	providers: [ { provide: 'API_URL', useValue: env.api }, ApiService, ...SERVICES ]
+  declarations: [],
+  imports: [
+    CommonModule,
+    HttpClientModule,
+    NgxsModule.forRoot(STATES),
+    NgxsStoragePluginModule.forRoot(),
+    ...devModules
+  ],
+  providers: [{provide: 'API_URL', useValue: env.api}, ApiService, ...SERVICES]
 })
-export class CoreModule {}
+export class CoreModule {
+}

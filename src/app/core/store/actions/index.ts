@@ -1,1 +1,1 @@
-export * from './insurance.action';
+export * from './insurance.actions';
